@@ -73,9 +73,10 @@ public class OnlinePluginServlet extends HttpServlet {
         System.out.println("Accept online mining request, key: " + request.getParameter(Common.KEY_KEY) + " Generate port: " + port);
 
         Map<String, String> params = new HashMap<>();
-        for (String key : request.getParameterMap().keySet()) {
-            System.out.println(key + " : " + request.getParameter(key));
-            params.put(key, request.getParameter(key));
+        
+        for (Object key : request.getParameterMap().keySet()) {
+            System.out.println(key + " : " + request.getParameter(String.valueOf(key)));
+            params.put(String.valueOf(key), request.getParameter(String.valueOf(key)));
         }
 
         OnlineProcessMiner miner = new OnlineProcessMiner(port, params, this, pluginEao);
